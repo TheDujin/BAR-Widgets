@@ -12,13 +12,13 @@ local widget = widget ---@type Widget
 
 function widget:GetInfo()
 	return {
-		name = "Grid menu",
-		desc = "Build menu with grid hotkeys",
-		author = "Floris, grid by badosu and resopmok",
-		date = "October 2021",
+		name = "Grid menu Noclick",
+		desc = "Build menu with grid hotkeys, but clicking disabled when building!",
+		author = "TheDujin, shamelessly ripped from Floris et al",
+		date = "July 3 2025",
 		license = "GNU GPL, v2 or later",
 		layer = 0,
-		enabled = true,
+		enabled = false,
 		handler = true,
 	}
 end
@@ -2368,6 +2368,9 @@ function widget:KeyRelease(key)
 end
 
 function widget:MousePress(x, y, button)
+	if 1 then
+		return
+	end
 	if Spring.IsGUIHidden() then
 		return
 	end
