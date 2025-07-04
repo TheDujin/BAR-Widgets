@@ -1274,7 +1274,7 @@ function widget:Initialize()
 		widgetHandler:DisableWidgetRaw("Build menu")
 	end
 
-	if widgetHandler:isWidgetKnown("Grid menu") then
+	if widgetHandler:IsWidgetKnown("Grid menu") then
 		Spring.Echo("Disabling Grid Menu widget...please disable this widget before turning Grid Menu back on!")
 		widgetHandler:DisableWidgetRaw("Grid menu")
 	end
@@ -2373,9 +2373,6 @@ function widget:KeyRelease(key)
 end
 
 function widget:MousePress(x, y, button)
-	if 1 then
-		return
-	end
 	if Spring.IsGUIHidden() then
 		return
 	end
@@ -2390,25 +2387,25 @@ function widget:MousePress(x, y, button)
 		if activeBuilder then
 			if pages > 1 then
 				if nextPageRect and nextPageRect:contains(x, y) then
-					Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
-					nextPageHandler()
+					-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
+					-- nextPageHandler()
 					return true
 				end
 			end
 
 			if currentCategory or labBuildModeActive then
 				if backRect and backRect:contains(x, y) then
-					Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
-					clearCategory()
+					-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
+					-- clearCategory()
 					return true
 				end
 			end
 
 			if useLabBuildMode and builderIsFactory and not labBuildModeActive then
 				if labBuildModeRect:contains(x, y) then
-					Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
-					setLabBuildMode(true)
-					updateGrid()
+					-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
+					-- setLabBuildMode(true)
+					-- updateGrid()
 					return true
 				end
 			end
@@ -2433,8 +2430,8 @@ function widget:MousePress(x, y, button)
 				if not currentCategory and not builderIsFactory then
 					for cat, catRect in pairs(catRects) do
 						if catRect:contains(x, y) then
-							setCurrentCategory(cat)
-							Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
+							-- setCurrentCategory(cat)
+							-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 							return true
 						end
 					end
@@ -2451,36 +2448,36 @@ function widget:MousePress(x, y, button)
 						local alt, ctrl, meta, shift = Spring.GetModKeyState()
 						if button ~= 3 then
 							if builderIsFactory and WG.Quotas and WG.Quotas.isOnQuotaMode(activeBuilderID) and not alt then
-								local amount = 1
-								if ctrl then
-									amount = amount * modKeyMultiplier.click.ctrl
-								end
-								if shift then
-									amount = amount * modKeyMultiplier.click.shift
-								end
-								updateQuotaNumber(unitDefID, amount)
+								-- local amount = 1
+								-- if ctrl then
+								-- 	amount = amount * modKeyMultiplier.click.ctrl
+								-- end
+								-- if shift then
+								-- 	amount = amount * modKeyMultiplier.click.shift
+								-- end
+								-- updateQuotaNumber(unitDefID, amount)
 								return true
 							end
 							Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 
 							if isPregame then
-								setPregameBlueprint(unitDefID)
+								-- setPregameBlueprint(unitDefID)
 							elseif spGetCmdDescIndex(-unitDefID) then
-								pickBlueprint(unitDefID)
+								-- pickBlueprint(unitDefID)
 							end
 						elseif builderIsFactory and spGetCmdDescIndex(-unitDefID) then
 							if not (WG.Quotas and WG.Quotas.isOnQuotaMode(activeBuilderID) and not alt) then
-								Spring.PlaySoundFile(CONFIG.sound_queue_rem, 0.75, "ui")
-								setActiveCommand(spGetCmdDescIndex(-unitDefID), 3, false, true)
+								-- Spring.PlaySoundFile(CONFIG.sound_queue_rem, 0.75, "ui")
+								-- setActiveCommand(spGetCmdDescIndex(-unitDefID), 3, false, true)
 							else
-								local amount = modKeyMultiplier.click.right
-								if ctrl then
-									amount = amount * modKeyMultiplier.click.ctrl
-								end
-								if shift then
-									amount = amount * modKeyMultiplier.click.shift
-								end
-								updateQuotaNumber(unitDefID, amount)
+								-- local amount = modKeyMultiplier.click.right
+								-- if ctrl then
+								-- 	amount = amount * modKeyMultiplier.click.ctrl
+								-- end
+								-- if shift then
+								-- 	amount = amount * modKeyMultiplier.click.shift
+								-- end
+								-- updateQuotaNumber(unitDefID, amount)
 							end
 						end
 
@@ -2493,7 +2490,7 @@ function widget:MousePress(x, y, button)
 			return true
 		end
 	elseif activeBuilder and currentCategory and button == 3 then
-		clearCategory()
+		-- clearCategory()
 		return true
 	end
 end
