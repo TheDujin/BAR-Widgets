@@ -2458,7 +2458,7 @@ function widget:MousePress(x, y, button)
 								-- updateQuotaNumber(unitDefID, amount)
 								return true
 							end
-							Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
+							-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 
 							if isPregame then
 								-- setPregameBlueprint(unitDefID)
@@ -2490,7 +2490,7 @@ function widget:MousePress(x, y, button)
 			return true
 		end
 	elseif activeBuilder and currentCategory and button == 3 then
-		-- clearCategory()
+		clearCategory()
 		return true
 	end
 end
