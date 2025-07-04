@@ -2448,36 +2448,38 @@ function widget:MousePress(x, y, button)
 						local alt, ctrl, meta, shift = Spring.GetModKeyState()
 						if button ~= 3 then
 							if builderIsFactory and WG.Quotas and WG.Quotas.isOnQuotaMode(activeBuilderID) and not alt then
-								-- local amount = 1
-								-- if ctrl then
-								-- 	amount = amount * modKeyMultiplier.click.ctrl
-								-- end
-								-- if shift then
-								-- 	amount = amount * modKeyMultiplier.click.shift
-								-- end
-								-- updateQuotaNumber(unitDefID, amount)
+								local amount = 1
+								if ctrl then
+									amount = amount * modKeyMultiplier.click.ctrl
+								end
+								if shift then
+									amount = amount * modKeyMultiplier.click.shift
+								end
+								updateQuotaNumber(unitDefID, amount)
+								Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 								return true
 							end
 							-- Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 
 							if isPregame then
 								-- setPregameBlueprint(unitDefID)
-							elseif spGetCmdDescIndex(-unitDefID) then
-								-- pickBlueprint(unitDefID)
+							elseif spGetCmdDescIndex(-unitDefID) and builderIsFactory then
+								pickBlueprint(unitDefID)
+								Spring.PlaySoundFile(CONFIG.sound_queue_add, 0.75, "ui")
 							end
 						elseif builderIsFactory and spGetCmdDescIndex(-unitDefID) then
 							if not (WG.Quotas and WG.Quotas.isOnQuotaMode(activeBuilderID) and not alt) then
-								-- Spring.PlaySoundFile(CONFIG.sound_queue_rem, 0.75, "ui")
-								-- setActiveCommand(spGetCmdDescIndex(-unitDefID), 3, false, true)
+								Spring.PlaySoundFile(CONFIG.sound_queue_rem, 0.75, "ui")
+								setActiveCommand(spGetCmdDescIndex(-unitDefID), 3, false, true)
 							else
-								-- local amount = modKeyMultiplier.click.right
-								-- if ctrl then
-								-- 	amount = amount * modKeyMultiplier.click.ctrl
-								-- end
-								-- if shift then
-								-- 	amount = amount * modKeyMultiplier.click.shift
-								-- end
-								-- updateQuotaNumber(unitDefID, amount)
+								local amount = modKeyMultiplier.click.right
+								if ctrl then
+									amount = amount * modKeyMultiplier.click.ctrl
+								end
+								if shift then
+									amount = amount * modKeyMultiplier.click.shift
+								end
+								updateQuotaNumber(unitDefID, amount)
 							end
 						end
 
