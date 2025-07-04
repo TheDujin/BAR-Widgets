@@ -1274,6 +1274,11 @@ function widget:Initialize()
 		widgetHandler:DisableWidgetRaw("Build menu")
 	end
 
+	if widgetHandler:isWidgetKnown("Grid menu") then
+		Spring.Echo("Disabling Grid Menu widget...please disable this widget before turning Grid Menu back on!")
+		widgetHandler:DisableWidgetRaw("Grid menu")
+	end
+
 	myTeamID = Spring.GetMyTeamID()
 	isSpec = Spring.GetSpectatingState()
 	isPregame = Spring.GetGameFrame() == 0 and not isSpec
